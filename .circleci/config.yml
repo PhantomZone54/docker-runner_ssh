@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: fr3akyphantom/alpine-docker-runner:latest
+    working_directory: /home/builder/pitchblack
+    steps:
+      - setup_remote_docker:
+          version: 19.03.8
+      - run:
+          command: |
+            whoami
+            sudo whoami
+            df -h
+            pwd
+            docker pull fr3akyphantom/droid-builder:focal
+          name: Prepare
