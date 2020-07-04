@@ -9,9 +9,12 @@ jobs:
           version: 19.03.8
       - run:
           command: |
+            set -xe
             whoami
             sudo whoami
             df -h
             pwd
+            nproc --all
+            free -mh
             docker pull fr3akyphantom/droid-builder:focal
           name: Prepare
