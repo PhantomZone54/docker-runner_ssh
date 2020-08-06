@@ -1,4 +1,5 @@
 version: 2.1
+
 jobs:
   build:
     docker:
@@ -18,3 +19,10 @@ jobs:
             free -mh
             docker pull fr3akyphantom/droid-builder:focal
           name: Prepare
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build:
+          context: org-global
