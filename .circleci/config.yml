@@ -2,11 +2,11 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: fr3akyphantom/alpine-docker-runner:latest
-    working_directory: /home/builder/pitchblack
+      - image: fr3akyphantom/droid-runner:latest
+    working_directory: /home/builder/
     steps:
       - setup_remote_docker:
-          version: 19.03.8
+          version: 19.03.12
       - run:
           command: |
             set -xe
