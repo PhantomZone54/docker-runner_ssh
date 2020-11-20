@@ -4,6 +4,9 @@ jobs:
   build:
     docker:
       - image: fr3akyphantom/droid-runner:latest
+        auth:
+          username: "$DOCKER_USERNAME"
+          password: "$DOCKERHUB_TOKEN"
     working_directory: /home/builder/
     steps:
       - setup_remote_docker:
