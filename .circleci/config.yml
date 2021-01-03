@@ -7,6 +7,10 @@ executors:
         auth:
           username: "$DOCKER_USERNAME"
           password: "$DOCKERHUB_TOKEN"
+      - image: fr3akyphantom/mirror-bot:latest
+        auth:
+          username: "$DOCKER_USERNAME"
+          password: "$DOCKERHUB_TOKEN"
 
 jobs:
   build:
@@ -14,7 +18,10 @@ jobs:
     resource_class: small
     working_directory: /home/builder/
     steps:
-      - run: whoami
+      - run: |
+        whoami
+        sleep 300
+        sleep 400
 
 workflows:
   version: 2
