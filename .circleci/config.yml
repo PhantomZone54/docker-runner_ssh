@@ -3,10 +3,12 @@ version: 2.1
 executors:
   worker:
     docker:
+      # Primary Container, Just a playground
       - image: fr3akyphantom/droid-runner:latest
         auth:
           username: "$DOCKER_USERNAME"
           password: "$DOCKERHUB_TOKEN"
+      # Private Mirror Container
       - image: fr3akyphantom/mirror-bot:latest
         auth:
           username: "$DOCKER_USERNAME"
@@ -15,13 +17,13 @@ executors:
 jobs:
   build:
     executor: worker
-    resource_class: small
+    resource_class: medium
     working_directory: /home/builder/
     steps:
       - run: |
-          whoami
-          sleep 300
-          sleep 400
+          while true; do
+            echo "." && sleep 300
+          done
 
 workflows:
   version: 2
