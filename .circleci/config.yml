@@ -19,9 +19,9 @@ jobs:
     working_directory: /home/builder/
     steps:
       - run: |
-        whoami
-        sleep 300
-        sleep 400
+          whoami
+          sleep 300
+          sleep 400
 
 workflows:
   version: 2
