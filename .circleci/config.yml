@@ -14,28 +14,8 @@ jobs:
     resource_class: small
     working_directory: /home/builder/
     steps:
-      - run:
-          command: |
-            set -xe
-            whoami
-            sudo whoami
-            df -hlT
-            pwd
-            nproc --all
-            free -mh
-          name: Pre-Remote-Small
       - setup_remote_docker:
           version: 19.03.13
-      - run:
-          command: |
-            set -xe
-            whoami
-            sudo whoami
-            df -hlT
-            pwd
-            nproc --all
-            free -mh
-          name: Prepare-Remote
 
 workflows:
   version: 2
