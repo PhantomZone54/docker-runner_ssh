@@ -1,31 +1,48 @@
 version: 2.1
 
-jobs:
-  build:
+executors:
+  worker:
     docker:
       - image: fr3akyphantom/droid-runner:latest
         auth:
           username: "$DOCKER_USERNAME"
           password: "$DOCKERHUB_TOKEN"
+
+jobs:
+  build:
+    executor: worker
+    resource_class: small
     working_directory: /home/builder/
     steps:
-      - setup_remote_docker:
-          version: 19.03.12
       - run:
           command: |
             set -xe
             whoami
             sudo whoami
-            df -h
+            df -hlT
             pwd
             nproc --all
             free -mh
-            docker pull fr3akyphantom/droid-builder:focal
-          name: Prepare
+          name: Pre-Remote-Small
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          command: |
+            set -xe
+            whoami
+            sudo whoami
+            df -hlT
+            pwd
+            nproc --all
+            free -mh
+          name: Prepare-Remote
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build:
+          filters:
+            branches:
+              only: "dev"
           context: org-global
